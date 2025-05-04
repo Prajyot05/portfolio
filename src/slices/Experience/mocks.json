@@ -1,0 +1,88 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "substance",
+				"type": "Text"
+			},
+			"info": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "being",
+									"type": "Text"
+								}
+							],
+							[
+								"time_period",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "round",
+									"type": "Text"
+								}
+							],
+							[
+								"institution",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "proud",
+									"type": "Text"
+								}
+							],
+							[
+								"logo",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+										"width": 12288,
+										"height": 16384
+									},
+									"url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
+									"width": 12288,
+									"height": 16384,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "fairly",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Aliqua tempor deserunt anim sint non dolor ad ad nulla excepteur. Irure ut cillum laboris."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

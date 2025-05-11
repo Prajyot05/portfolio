@@ -63,9 +63,11 @@ const Hero: FC<HeroProps> = ({ slice }) => {
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      ref={component}
     >
-      <div className="grid min-h-[70vh] grid-cols-1 md:grid-cols-2 justify-center items-center">
+      <div
+        ref={component}
+        className="grid min-h-[70vh] grid-cols-1 md:grid-cols-2 justify-center items-center"
+      >
         <Shapes />
         <div className="flex flex-col items-center">
           <h1

@@ -18,7 +18,7 @@ export default function Avatar({
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.fromTo(
         ".avatar",
         {
@@ -34,17 +34,17 @@ export default function Avatar({
       );
 
       window.onmousemove = (e) => {
-        if (!component.current) return; // no component, no animation!
+        if (!component.current) return; // no component, no animation
         const componentRect = (
           component.current as HTMLElement
         ).getBoundingClientRect();
         const componentCenterX = componentRect.left + componentRect.width / 2;
 
-        let componentPercent = {
+        const componentPercent = {
           x: (e.clientX - componentCenterX) / componentRect.width / 2,
         };
 
-        let distFromCenterX = 1 - Math.abs(componentPercent.x);
+        const distFromCenterX = 1 - Math.abs(componentPercent.x);
 
         gsap
           .timeline({
@@ -79,7 +79,7 @@ export default function Avatar({
         style={{ perspective: "500px", perspectiveOrigin: "150% 150%" }}
       >
         <PrismicNextImage
-          alt="profile"
+          alt=""
           field={image}
           className="avatar-image h-full w-full object-fill"
           imgixParams={{ q: 90 }}

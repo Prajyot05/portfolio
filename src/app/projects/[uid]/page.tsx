@@ -1,10 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { createClient } from "@/prismicio";
-
 import ContentBody from "@/components/content-body";
-import { formatDate } from "@/utils/format-date";
 
 type Params = { uid: string };
 

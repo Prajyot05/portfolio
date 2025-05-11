@@ -3,7 +3,6 @@ import React from "react";
 import { MdArrowOutward } from "react-icons/md";
 import clsx from "clsx";
 import { KeyTextField, LinkField } from "@prismicio/client";
-import Avatar from "./avatar";
 
 type ButtonProps = {
   linkField: LinkField;

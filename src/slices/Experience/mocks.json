@@ -77,6 +77,18 @@
 										}
 									]
 								}
+							],
+							[
+								"institution_link",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "c93a7b1a-d028-4a12-b602-03829431d2f2",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "http://google.com",
+										"text": "jack"
+									}
+								}
 							]
 						]
 					}

@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import { Content, KeyTextField } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import { gsap } from "gsap";
@@ -17,7 +17,7 @@ const Hero: FC<HeroProps> = ({ slice }) => {
   const component = useRef(null);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline();
       tl.fromTo(
         ".name-animation",

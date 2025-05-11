@@ -7,7 +7,6 @@ import { MdCircle } from "react-icons/md";
 import Bounded from "@/components/bounded";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import RepeatButton from "@/components/repeat-button";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +21,6 @@ export type TechListProps = SliceComponentProps<Content.TechListSlice>;
  */
 const TechList: FC<TechListProps> = ({ slice }) => {
   const component = useRef(null);
-
   const [startIndex, setStartIndex] = useState(0);
   const chunkSize = 4;
   const techItems = slice.primary.tech_info || [];
@@ -34,7 +32,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
   });
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           pin: true, // pin the trigger element while active
@@ -67,6 +65,50 @@ const TechList: FC<TechListProps> = ({ slice }) => {
     return () => ctx.revert();
   });
 
+  // Handler for repeat button with GSAP animate-out, update, animate-in
+  const handleRepeat = () => {
+    const rows = gsap.utils.toArray<HTMLElement>(
+      ".tech-row",
+      component.current
+    );
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power1.inOut", duration: 0.4 },
+    });
+
+    // Exit animation: current rows go down and fade out
+    tl.to(rows, {
+      opacity: 0,
+      y: 50,
+      stagger: 0.05,
+      onComplete: () => {
+        // Update the list after current items animate out
+        setStartIndex((prev) => (prev + chunkSize) % total);
+
+        // Wait for DOM to update
+        requestAnimationFrame(() => {
+          const newRows = gsap.utils.toArray<HTMLElement>(
+            ".tech-row",
+            component.current
+          );
+
+          // Entrance animation: new rows come from above and fade in
+          gsap.fromTo(
+            newRows,
+            { opacity: 0, y: -50 },
+            {
+              opacity: 1,
+              y: 0,
+              stagger: 0.05,
+              duration: 0.4,
+              ease: "power1.out",
+            }
+          );
+        });
+      },
+    });
+  };
+
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -80,11 +122,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
             {slice.primary.heading}
           </Heading>
           <div className="flex items-center justify-center mt-4">
-            <button
-              onClick={() =>
-                setStartIndex((prev) => (prev + chunkSize) % total)
-              }
-            >
+            <button onClick={handleRepeat}>
               <RepeatButton />
             </button>
           </div>

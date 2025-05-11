@@ -5,6 +5,7 @@ import { SliceComponentProps } from "@prismicio/react";
 import { gsap } from "gsap";
 import Bounded from "@/components/bounded";
 import Shapes from "./shapes";
+
 /**
  * Props for `Hero`.
  */

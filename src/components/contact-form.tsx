@@ -70,11 +70,16 @@ export default function ContactForm({ heading }: { heading: KeyTextField }) {
 
   useEffect(() => {
     if (formRef.current) {
-      gsap.from(formRef.current, {
+      const elements = gsap.utils.toArray<HTMLElement>(
+        formRef.current.querySelectorAll("input, textarea, button, h2")
+      );
+
+      gsap.from(elements, {
         opacity: 0,
-        scale: 0.9,
-        duration: 1,
+        y: 20,
+        duration: 0.8,
         ease: "power3.out",
+        stagger: 0.1,
       });
     }
   }, []);

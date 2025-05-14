@@ -3,7 +3,6 @@ import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/components/bounded";
 import ContactForm from "@/components/contact-form";
-import Heading from "@/components/heading";
 
 /**
  * Props for `Contact`.

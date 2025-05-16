@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import clsx from "clsx";
+import Preloader from "@/components/preloader";
 
 const urbanist = Urbanist({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
       className="bg-slate-900 text-slate-100 max-w-screen overflow-x-hidden"
     >
       <body className={clsx(urbanist.className, "relative min-h-screen")}>
+        <Preloader />
         <Header />
         {children}
         <Footer />

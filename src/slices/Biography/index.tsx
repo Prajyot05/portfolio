@@ -21,7 +21,7 @@ const Biography: FC<BiographyProps> = ({ slice }) => {
       data-slice-variation={slice.variation}
     >
       <div className="flex gap-20">
-        <div className="flex flex-col items-center gap-10">
+        <div className="fade-in-up flex flex-col items-center gap-10">
           <Heading size="xl">{slice.primary.heading}</Heading>
 
           <div className="w-1/2 md:hidden">

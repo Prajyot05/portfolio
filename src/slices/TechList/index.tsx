@@ -25,6 +25,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
   const chunkSize = 4;
   const techItems = slice.primary.tech_info || [];
   const total = techItems.length;
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Wrap-around logic for 4-item group
   const visibleItems = Array.from({ length: chunkSize }, (_, i) => {
@@ -67,6 +68,19 @@ const TechList: FC<TechListProps> = ({ slice }) => {
 
   // Handler for repeat button with GSAP animate-out, update, animate-in
   const handleRepeat = () => {
+    // Animate button press with a spring-like effect
+    gsap.fromTo(
+      buttonRef.current,
+      { scale: 1 },
+      {
+        scale: 0.9,
+        duration: 0.1,
+        ease: "power1.in",
+        yoyo: true,
+        repeat: 1,
+      }
+    );
+
     const rows = gsap.utils.toArray<HTMLElement>(
       ".tech-row",
       component.current
@@ -122,7 +136,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
             {slice.primary.heading}
           </Heading>
           <div className="flex items-center justify-center mt-4">
-            <button onClick={handleRepeat}>
+            <button ref={buttonRef} onClick={handleRepeat}>
               <RepeatButton />
             </button>
           </div>

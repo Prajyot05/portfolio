@@ -98,7 +98,7 @@ export default function ContactForm({ heading }: { heading: KeyTextField }) {
       <form
         ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-xl w-full bg-black/10 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-white/50 shadow-sm space-y-6"
+        className="max-w-xl w-full bg-black/10 backdrop-blur-xs p-8 rounded-xl border border-white/20 space-y-6"
       >
         <h2 className="text-4xl font-semibold text-slate-100 text-center">
           {heading}

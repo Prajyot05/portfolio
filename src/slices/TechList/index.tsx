@@ -131,7 +131,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
       className="w-screen overflow-hidden"
     >
       <Bounded as="div">
-        <div className="flex gap-10">
+        <div className="flex flex-col md:flex-row md:gap-10">
           <Heading size="xl" as="h2">
             {slice.primary.heading}
           </Heading>
@@ -152,7 +152,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
             <Fragment key={index}>
               <span
                 className={
-                  "tech-item text-8xl font-extrabold uppercase tracking-tighter"
+                  "tech-item text-6xl md:text-8xl font-extrabold uppercase tracking-tighter"
                 }
                 style={{
                   color: index === 7 && tech_color ? tech_color : "inherit",

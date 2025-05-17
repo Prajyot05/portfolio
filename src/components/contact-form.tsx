@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { Toaster, toast } from "sonner";
 import { gsap } from "gsap";
+import { Vortex } from "./ui/vortex";
 
 interface FormData {
   name: string;
@@ -85,14 +86,21 @@ export default function ContactForm({ heading }: { heading: KeyTextField }) {
   }, []);
 
   return (
-    <>
+    // <Vortex backgroundColor="transparent" className="flex justify-center">
+    <Vortex
+      backgroundColor="transparent"
+      rangeY={200}
+      particleCount={500}
+      baseHue={120}
+      className="flex justify-center"
+    >
       <Toaster richColors />
       <form
         ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-xl w-full bg-slate-900 p-8 rounded-xl shadow-xl border border-slate-700 space-y-6"
+        className="max-w-xl w-full bg-black/10 backdrop-blur-md p-8 rounded-xl border border-white/20 shadow-white/50 shadow-sm space-y-6"
       >
-        <h2 className="text-2xl font-semibold text-slate-100 text-center">
+        <h2 className="text-4xl font-semibold text-slate-100 text-center">
           {heading}
         </h2>
 
@@ -166,6 +174,6 @@ export default function ContactForm({ heading }: { heading: KeyTextField }) {
           Cast your message!
         </button>
       </form>
-    </>
+    </Vortex>
   );
 }

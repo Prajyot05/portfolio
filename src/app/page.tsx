@@ -1,18 +1,16 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { asImageSrc } from "@prismicio/client";
-// import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
-import Robot from "@/components/robot";
-// import { components } from "@/slices";
+import { SliceZone } from "@prismicio/react";
+import { components } from "@/slices";
 
 export default async function Page() {
-  // const client = createClient();
-  // const page = await client.getSingle("homepage").catch(() => notFound());
+  const client = createClient();
+  const page = await client.getSingle("homepage").catch(() => notFound());
 
-  return <Robot />;
-  // return <SliceZone slices={page.data.slices} components={components} />;
+  return <SliceZone slices={page.data.slices} components={components} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

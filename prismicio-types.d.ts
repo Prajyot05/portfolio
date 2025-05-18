@@ -406,6 +406,17 @@ interface SettingsDocumentData {
   name: prismic.KeyTextField;
 
   /**
+   * Tag Line field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.tag_line
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tag_line: prismic.KeyTextField;
+
+  /**
    * Nav Item field in *Settings*
    *
    * - **Field Type**: Group
@@ -1021,6 +1032,16 @@ export interface TechListSliceDefaultPrimaryTechInfoItem {
    * - **Documentation**: https://prismic.io/docs/field#color
    */
   tech_color: prismic.ColorField;
+
+  /**
+   * Tech Logo field in *TechList → Default → Primary → Tech Info*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: tech_list.default.primary.tech_info[].tech_logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  tech_logo: prismic.ImageField<never>;
 }
 
 /**

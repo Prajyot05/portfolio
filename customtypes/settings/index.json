@@ -13,6 +13,13 @@
           "placeholder": ""
         }
       },
+      "tag_line": {
+        "type": "Text",
+        "config": {
+          "label": "Tag Line",
+          "placeholder": ""
+        }
+      },
       "nav_item": {
         "type": "Group",
         "config": {

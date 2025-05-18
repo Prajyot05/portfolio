@@ -3,11 +3,11 @@ import { FC, Fragment, useEffect, useRef, useState } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Heading from "@/components/heading";
-import { MdCircle } from "react-icons/md";
 import Bounded from "@/components/bounded";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RepeatButton from "@/components/repeat-button";
+import { PrismicNextImage } from "@prismicio/next";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -142,7 +142,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
           </div>
         </div>
       </Bounded>
-      {visibleItems.map(({ tech_color, tech_name }, index) => (
+      {visibleItems.map(({ tech_color, tech_name, tech_logo }, index) => (
         <div
           key={index}
           className="tech-row mb-8 flex items-center justify-center gap-4 text-slate-700"
@@ -150,19 +150,31 @@ const TechList: FC<TechListProps> = ({ slice }) => {
         >
           {Array.from({ length: 15 }, (_, index) => (
             <Fragment key={index}>
-              <span
-                className={
-                  "tech-item text-6xl md:text-8xl font-extrabold uppercase tracking-tighter"
-                }
-                style={{
-                  color: index === 7 && tech_color ? tech_color : "inherit",
-                }}
-              >
-                {tech_name}
-              </span>
-              <span className="text-3xl">
-                <MdCircle />
-              </span>
+              <div className="flex items-center gap-3">
+                {/* Logo + name together */}
+                <div className="flex mx-12 items-center gap-6 text-6xl md:text-8xl font-extrabold uppercase tracking-tighter tech-item">
+                  {tech_logo && (
+                    <PrismicNextImage
+                      alt=""
+                      field={tech_logo}
+                      className="avatar-image h-20 w-20 object-contain"
+                      imgixParams={{ q: 90 }}
+                    />
+                  )}
+                  <span
+                    style={{
+                      color: index === 7 && tech_color ? tech_color : "inherit",
+                    }}
+                  >
+                    {tech_name}
+                  </span>
+                </div>
+
+                {/* Dot */}
+                {/* <span className="text-3xl text-neutral-500">
+                  <MdCircle />
+                </span> */}
+              </div>
             </Fragment>
           ))}
         </div>

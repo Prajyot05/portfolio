@@ -81,7 +81,7 @@ export default function NavBar({
               )}
             </React.Fragment>
           ))}
-          <li>
+          <li onClick={() => setOpen(false)}>
             <Button
               linkField={settings.data.cta_link}
               label={settings.data.cta_text}

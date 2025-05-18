@@ -38,6 +38,14 @@
                   "label": "Tech Color",
                   "placeholder": ""
                 }
+              },
+              "tech_logo": {
+                "type": "Image",
+                "config": {
+                  "label": "Tech Logo",
+                  "constraint": {},
+                  "thumbnails": []
+                }
               }
             }
           }

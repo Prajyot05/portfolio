@@ -16,7 +16,7 @@ export default async function Footer() {
         {/* Tagline & Copyright */}
         <div className="flex flex-col md:flex items-center text-center sm:items-start sm:text-left gap-2">
           <p className="text-lg italic text-slate-300">
-            Building mind-blowing web apps since, like, a while now.
+            {settings.data.tag_line}
           </p>
           <p className="text-sm text-slate-400">
             © {new Date().getFullYear()} {settings.data.name}

@@ -185,6 +185,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | HeroSlice
   | ContactSlice
   | ExperienceSlice
   | ContentIndexSlice

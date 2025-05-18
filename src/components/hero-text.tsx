@@ -43,7 +43,7 @@ const HeroText = ({ heroText }: HeroTextProps) => {
         tl.to(".name-animation", {
           opacity: 1,
           duration: 0.3,
-          stagger: 0.05,
+          // stagger: 0.05,
           ease: "none",
         });
         tl.to(".job-title", {

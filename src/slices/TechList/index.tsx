@@ -26,6 +26,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
   const techItems = slice.primary.tech_info || [];
   const total = techItems.length;
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   // Wrap-around logic for 4-item group
   const visibleItems = Array.from({ length: chunkSize }, (_, i) => {
@@ -68,6 +69,8 @@ const TechList: FC<TechListProps> = ({ slice }) => {
 
   // Handler for repeat button with GSAP animate-out, update, animate-in
   const handleRepeat = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     // Animate button press with a spring-like effect
     gsap.fromTo(
       buttonRef.current,
@@ -116,6 +119,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
               stagger: 0.05,
               duration: 0.4,
               ease: "power1.out",
+              onComplete: () => setIsAnimating(false),
             }
           );
         });

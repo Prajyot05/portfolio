@@ -43,12 +43,14 @@ const Experience = ({ slice }: ExperienceProps): JSX.Element => {
             icon={
               item.logo?.url && (
                 <PrismicNextLink field={item.institution_link}>
-                  <PrismicNextImage
-                    alt=""
-                    field={item.logo}
-                    className="h-12 w-12 rounded-full object-cover"
-                    imgixParams={{ q: 90 }}
-                  />
+                  <div className="h-12 w-12 rounded-full overflow-hidden flex items-center justify-center bg-white">
+                    <PrismicNextImage
+                      alt=""
+                      field={item.logo}
+                      className="h-full w-full object-cover"
+                      imgixParams={{ q: 90 }}
+                    />
+                  </div>
                 </PrismicNextLink>
               )
             }

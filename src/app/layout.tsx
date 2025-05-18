@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prajyot Tayde | Full Stack Web Developer",
+    title: "Prajyot Tayde | Full Stack Developer",
     description:
       "Showcasing the work and projects of Prajyot Tayde, a passionate full stack software developer.",
     creator: "https://x.com/Prajyot_Tayde",

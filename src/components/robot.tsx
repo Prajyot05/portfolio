@@ -1,6 +1,5 @@
 import Spline from "@splinetool/react-spline/next";
 import HeroText from "./hero-text";
-import Bounded from "@/components/bounded";
 import Shapes from "@/slices/Hero/shapes";
 import { Suspense } from "react";
 import { KeyTextField } from "@prismicio/client";

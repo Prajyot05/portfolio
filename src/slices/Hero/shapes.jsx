@@ -2,7 +2,7 @@
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Float, Environment } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState, useMemo } from "react";
 import gsap from "gsap";
 
 export default function Shapes() {
@@ -32,7 +32,7 @@ export default function Shapes() {
 }
 
 function Geometries() {
-  const geometries = [
+  const geometries = useMemo(() => [
     {
       position: [0, 0, 0],
       r: 0.3,
@@ -58,19 +58,22 @@ function Geometries() {
       r: 0.7,
       geometry: new THREE.OctahedronGeometry(1.5), // Diamond
     },
-  ];
+  ], []);
 
-  const soundEffects = [
-    new Audio("/sounds/hit1.ogg"),
-    new Audio("/sounds/hit2.ogg"),
-    new Audio("/sounds/hit3.ogg"),
-    new Audio("/sounds/hit4.ogg"),
-    new Audio("/sounds/hit6.ogg"),
-    new Audio("/sounds/hit7.ogg"),
-    new Audio("/sounds/hit8.ogg"),
-  ];
+  const soundEffects = useMemo(() => {
+    if (typeof window === "undefined") return [];
+    return [
+      new Audio("/sounds/hit1.ogg"),
+      new Audio("/sounds/hit2.ogg"),
+      new Audio("/sounds/hit3.ogg"),
+      new Audio("/sounds/hit4.ogg"),
+      new Audio("/sounds/hit6.ogg"),
+      new Audio("/sounds/hit7.ogg"),
+      new Audio("/sounds/hit8.ogg"),
+    ];
+  }, []);
 
-  const materials = [
+  const materials = useMemo(() => [
     new THREE.MeshNormalMaterial(),
     new THREE.MeshStandardMaterial({ color: 0x2ecc71, roughness: 0 }),
     new THREE.MeshStandardMaterial({ color: 0xf1c40f, roughness: 0.4 }),
@@ -87,7 +90,7 @@ function Geometries() {
       roughness: 0.1,
       metalness: 0.5,
     }),
-  ];
+  ], []);
 
   return geometries.map(({ position, r, geometry }) => (
     <Geometry
@@ -113,7 +116,11 @@ function Geometry({ r, position, geometry, soundEffects, materials }) {
 
   function handleClick(e) {
     const mesh = e.object;
-    gsap.utils.random(soundEffects).play();
+    if (soundEffects.length > 0) {
+      const sound = gsap.utils.random(soundEffects);
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
     gsap.to(mesh.rotation, {
       x: `+=${gsap.utils.random(0, 2)}`,
       y: `+=${gsap.utils.random(0, 2)}`,

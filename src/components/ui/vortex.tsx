@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { createNoise3D } from "simplex-noise";
 import { motion } from "motion/react";
 import { cn } from "@/utils/cn";
+import { isWebGLAvailable } from "@/utils/webgl-detect";
 
 interface VortexProps {
   children?: React.ReactNode;
@@ -20,6 +21,8 @@ interface VortexProps {
 export const Vortex = (props: VortexProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationFrameId = useRef<number>(0);
+  const [isRenderable, setIsRenderable] = React.useState<boolean | null>(null);
 
   const particleCount = props.particleCount || 700;
   const particlePropCount = 9;
@@ -195,7 +198,7 @@ export const Vortex = (props: VortexProps) => {
     renderGlow(canvas, ctx);
     renderToScreen(canvas, ctx);
 
-    window.requestAnimationFrame(() => draw(canvas, ctx));
+    animationFrameId.current = window.requestAnimationFrame(() => draw(canvas, ctx));
   };
 
   const setup = useCallback(() => {
@@ -213,6 +216,11 @@ export const Vortex = (props: VortexProps) => {
   }, [resize]);
 
   useEffect(() => {
+    setIsRenderable(isWebGLAvailable());
+  }, []);
+
+  useEffect(() => {
+    if (isRenderable === false) return;
     setup();
 
     const handleResize = () => {
@@ -224,8 +232,13 @@ export const Vortex = (props: VortexProps) => {
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [resize, setup]);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (animationFrameId.current) {
+        window.cancelAnimationFrame(animationFrameId.current);
+      }
+    };
+  }, [resize, setup, isRenderable]);
 
   return (
     <div className={cn("relative h-full w-full", props.containerClassName)}>
@@ -235,7 +248,7 @@ export const Vortex = (props: VortexProps) => {
         ref={containerRef}
         className="absolute h-full w-full inset-0 z-0 bg-transparent flex items-center justify-center pointer-events-none"
       >
-        <canvas ref={canvasRef}></canvas>
+        {isRenderable !== false && <canvas ref={canvasRef}></canvas>}
       </motion.div>
 
       <div className={cn("relative z-10", props.className)}>

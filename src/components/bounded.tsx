@@ -19,7 +19,8 @@ type BoundedProps<C extends ElementType> = BoundedOwnProps<C> &
   };
 
 const Bounded = <C extends ElementType = "section">(
-  props: BoundedProps<C> & { ref?: Ref<any> }
+  props: BoundedProps<C>,
+  ref: Ref<any>
 ) => {
   const { as: Comp = "section", className, children, ...restProps } = props;
   return (

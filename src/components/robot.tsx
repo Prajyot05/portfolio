@@ -1,11 +1,9 @@
-"use client";
-
 import Spline from "@splinetool/react-spline/next";
 import HeroText from "./hero-text";
 import Shapes from "@/slices/Hero/shapes";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { KeyTextField } from "@prismicio/client";
-import { isWebGLAvailable } from "@/utils/webgl-detect";
+import WebGLFallback from "./webgl-fallback";
 
 interface HeroTextProps {
   heroText: {
@@ -16,12 +14,6 @@ interface HeroTextProps {
 }
 
 export default function Robot({ heroText }: HeroTextProps) {
-  const [hasWebGL, setHasWebGL] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    setHasWebGL(isWebGLAvailable());
-  }, []);
-
   return (
     <div className="max-w-screen overflow-y-visible">
       <div className="relative grid min-h-[70vh] grid-cols-1 md:grid-cols-2 justify-center items-center">
@@ -33,13 +25,13 @@ export default function Robot({ heroText }: HeroTextProps) {
           }
         >
           <HeroText heroText={heroText} />
-          {hasWebGL === true && <Shapes />}
-          {hasWebGL === true && (
+          <WebGLFallback>
+            <Shapes />
             <Spline
               className="hidden lg:block absolute scale-150 -right-80"
               scene="https://prod.spline.design/BKPRM7v6sx8kZnDl/scene.splinecode"
             />
-          )}
+          </WebGLFallback>
         </Suspense>
       </div>
     </div>

@@ -25,6 +25,7 @@ const Bounded = <C extends ElementType = "section">(
   const { as: Comp = "section", className, children, ...restProps } = props;
   return (
     <Comp
+      ref={ref}
       className={clsx("px-4 py-10 md:px-10 md:py-14 lg:py-16", className)}
       {...(restProps as any)}
     >

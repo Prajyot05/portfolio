@@ -63,6 +63,7 @@ export const Vortex = (props: VortexProps) => {
     canvas.height = innerHeight;
     center[0] = 0.5 * canvas.width;
     center[1] = 0.5 * canvas.height;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initParticle = (i: number) => {
@@ -213,6 +214,7 @@ export const Vortex = (props: VortexProps) => {
         draw(canvas, ctx);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resize]);
 
   useEffect(() => {
